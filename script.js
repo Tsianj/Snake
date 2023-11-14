@@ -255,31 +255,22 @@ window.onload = function() {  // pour que ça se lance a chaque démarrage de la
             case 32:  // touche espace
                 restart();
                 return;
-            default:
-                return;
-        }
-        snakee.setDirection(newDirection);
-    }
-    document.onkeydown = function handleKeyDown(e) {
-        var key = e.keyCode;
-        var newDirection;
-        switch(key){
-            // ... Vos autres cases
+                // ... Vos autres cases
             case 90: // Touche Z
-                newDirection = "up";
-                break;
-            case 81: // Touche Q
-                newDirection = "left";
-                break;
-            case 83: // Touche S
-                newDirection = "down";
-                break;
-            case 68: // Touche D
-                newDirection = "right";
-                break;
-            case 32: // Touche Espace
-                restart();
-                return;
+            newDirection = "up";
+            break;
+        case 81: // Touche Q
+            newDirection = "left";
+            break;
+        case 83: // Touche S
+            newDirection = "down";
+            break;
+        case 68: // Touche D
+            newDirection = "right";
+            break;
+        case 32: // Touche Espace
+            restart();
+            return;
             default:
                 return;
         }
