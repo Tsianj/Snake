@@ -65,6 +65,26 @@ window.onload = function() {  // pour que ça se lance a chaque démarrage de la
         ctx.strokeText("Appuyer sur la touche Espace pour rejouer", centreX, centreY -120);
         ctx.fillText("Appuyer sur la touche Espace pour rejouer", centreX, centreY -120);
         ctx.restore();
+        // Vérifier si le score actuel dépasse le high score stocké localement
+        var highScore = localStorage.getItem("highScore");
+        if (!highScore || score > parseInt(highScore)) {
+            highScore = score;
+            localStorage.setItem("highScore", highScore);
+        }
+
+      // Affichage du high score à l'écran avec le même style que le game over
+      ctx.font = "bold 30px sans-serif"; // Taille de police à 30px
+      ctx.fillStyle = "#000";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.strokeStyle = "white";
+      ctx.lineWidth = 5;
+  
+      // Affichage du high score et son cadre
+      ctx.strokeText("High Score: " + highScore, centreX, centreY - 60);
+      ctx.fillText("High Score: " + highScore, centreX, centreY - 60);
+
+    //
     }
     function restart(){
         snakee = new Snake([[6,4],[5,4],[4,4]], "right"); // le corps du serpent à la position initiale
@@ -233,6 +253,31 @@ window.onload = function() {  // pour que ça se lance a chaque démarrage de la
                 newDirection = "down"
                 break;
             case 32:  // touche espace
+                restart();
+                return;
+            default:
+                return;
+        }
+        snakee.setDirection(newDirection);
+    }
+    document.onkeydown = function handleKeyDown(e) {
+        var key = e.keyCode;
+        var newDirection;
+        switch(key){
+            // ... Vos autres cases
+            case 90: // Touche Z
+                newDirection = "up";
+                break;
+            case 81: // Touche Q
+                newDirection = "left";
+                break;
+            case 83: // Touche S
+                newDirection = "down";
+                break;
+            case 68: // Touche D
+                newDirection = "right";
+                break;
+            case 32: // Touche Espace
                 restart();
                 return;
             default:
